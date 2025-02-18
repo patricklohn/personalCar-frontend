@@ -1,0 +1,19 @@
+:root{
+    /*Cores Dark Classica*/
+    --background-dark-classic:#121212;
+    --font-dark-classic:#FFFFFF;
+    --destaque-dark-classuc:#2196F3;
+    /* Cores Dark Suave */
+    --background-dark:#1E1E1E;
+    --font-dark:#EEEEEE;
+    --destaque-dark:#FF9800;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "lato";
+    color: var(--font-dark);
+    background-color: var(--background-dark);
+}
