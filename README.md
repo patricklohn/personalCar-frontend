@@ -1,2 +1,3 @@
-# personalCar-frontend
-Projeto em React e Node com objetivo em personalização de acessorios de carro respeitando um orçamento definido.
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
