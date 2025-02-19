@@ -20,7 +20,7 @@ const Home = () => {
   if(!car) return <div id="loading-screen"><div className="loading-spinner"></div></div>
 
   return (
-    <div>
+    <div className='home'>
       <h1>Seus carros em personalização</h1>
       <div className="cars-container">
         {car.length === 0 && <p>Não há festas cadastradas!</p>}
