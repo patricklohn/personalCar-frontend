@@ -9,9 +9,7 @@ const Home = () => {
   useEffect(() => {
     const loadCar = async() =>{
       const res = await personalCar.get('/carGet');
-      console.log(res)
       setCar(res.data)
-      console.log(car)
     }
   
     loadCar();
