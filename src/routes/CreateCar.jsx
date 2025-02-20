@@ -1,6 +1,7 @@
 import {useEffect,useState} from 'react'
 import personalCar from '../axios/config'
 import {useNavigate} from 'react-router-dom'
+import './CreateCar.css'
 
 const CreateCar = () => {
   const [services, setServices] = useState([])
@@ -44,8 +45,8 @@ const CreateCar = () => {
           <span>Coloque uma imagem do carro:</span>
           <input type="text" placeholder='Insira uma URL de uma imagem da internet...' required />
         </label>
-        <div>
-          <h2>Escolha os serviços</h2>
+        <h2 id='title-service'>Escolha os serviços</h2>
+        <div className='services-container'>
           {services.length === 0 && <div id="loading-screen"><div className="loading-spinner"></div></div>}
           {services.length > 0 && services.map((service) =>(
             <div className="service" key={service.id}>
