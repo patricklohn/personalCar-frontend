@@ -1,7 +1,9 @@
 import {useEffect,useState} from 'react'
 import personalCar from '../axios/config'
 import {useNavigate} from 'react-router-dom'
+import useToast from '../hook/useToast'
 import './CreateCar.css'
+
 
 const CreateCar = () => {
   const [services, setServices] = useState([])
@@ -13,14 +15,17 @@ const CreateCar = () => {
   const [image, setImage] = useState("");
   const [serviceCar, setServiceCar] = useState([]);
 
+  const navigate = useNavigate();
+
   const loadServices = async() =>{
     const res = await personalCar.get('/services');
     setServices(res.data)
   }
 
-  const personalCars = (e) =>{
+  const personalCars = async(e) =>{
     e.preventDefault();
 
+  try {
     const car = {
       name,
       brand,
@@ -30,6 +35,17 @@ const CreateCar = () => {
       image,
       services: serviceCar
     }
+
+    const res = await personalCar.post("/carCreate", car);
+    if(res.status === 201){
+      navigate("/");
+      useToast(res.date.message)
+    }
+  } catch (error) {
+    console.log(error)
+    useToast(error.response.data.message, "error")
+  }
+
   }
 
   const handleServices = (e) => {
