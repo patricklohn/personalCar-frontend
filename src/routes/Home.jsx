@@ -21,7 +21,7 @@ const Home = () => {
     <div className='home'>
       <h1>Seus carros em personalização</h1>
       <div className="cars-container">
-        {car.length === 0 && <p>Não há festas cadastradas!</p>}
+        {car.length === 0 && <p>Não há carros cadastradas!</p>}
         {car.map((cars)=>(
           <div className="car" key={cars._id}>
             <img src={cars.image} alt={cars.name} />

@@ -1,8 +1,8 @@
 import {toast} from 'react-toastify';
 
-const useToast = (message, status = null) =>{
+const useToast = (menssage, status = null) =>{
     if(!status){
-        toast.success(message, {
+        toast.success(menssage, {
             position: "top-right",
             autoClose: 4000,
             hideProgressBar: false,
@@ -11,7 +11,7 @@ const useToast = (message, status = null) =>{
             theme: "light",
         })
     }else if(status === "error"){
-        toast.error(message, {
+        toast.error(menssage, {
             position: "top-right",
             autoClose: 4000,
             hideProgressBar: false,

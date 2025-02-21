@@ -31,19 +31,20 @@ const CreateCar = () => {
       brand,
       description,
       model,
-      budget,
+      budget: Number(budget),
       image,
-      services: serviceCar
+      services: serviceCar,
     }
 
     const res = await personalCar.post("/carCreate", car);
+
     if(res.status === 201){
-      navigate("/");
-      useToast(res.date.message)
+      navigate('/');
+      useToast(res.data.menssage)
     }
   } catch (error) {
     console.log(error)
-    useToast(error.response.data.message, "error")
+    useToast(error.response.data.menssage, "error")
   }
 
   }
@@ -73,7 +74,7 @@ const CreateCar = () => {
       <form onSubmit={(e)=> personalCars(e)}>
         <label>
           <span>Nome do Carro:</span>
-          <input type="text" placeholder='Escreva o nome do carro...' required onChange={(e) => setName(e.target.value)} value={name}/>
+          <input type="text" placeholder='Escreva o nome do carro...' required onChange={(e)=> setName(e.target.value)} value={name}/>
         </label>
         <label>
           <span>Marca do Carro:</span>
@@ -99,12 +100,12 @@ const CreateCar = () => {
         <div className='services-container'>
           {services.length === 0 && <div id="loading-screen"><div className="loading-spinner"></div></div>}
           {services.length > 0 && services.map((service) =>(
-            <div className="service" key={service.id}>
+            <div className="service" key={service._id}>
               <img src={service.image} alt={service.name}/>
               <p id='service-name'>{service.name}</p>
               <p id='service-price'>R$ {service.price}</p>
               <div className='checkbox-container'>
-                <input type="checkbox" value={service.id} onChange={(e) => handleServices(e)}/>
+                <input type="checkbox" value={service._id} onChange={(e) => handleServices(e)}/>
                 <p>Marque para selecionar</p>
               </div>
             </div>
