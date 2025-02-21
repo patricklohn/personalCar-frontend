@@ -5,10 +5,43 @@ import './CreateCar.css'
 
 const CreateCar = () => {
   const [services, setServices] = useState([])
+  const [name, setName] = useState("");
+  const [brand, setBrand] = useState("");
+  const [description, setDescription] = useState("");
+  const [model, setModel] = useState("");
+  const [budget, setBudget] = useState(0);
+  const [image, setImage] = useState("");
+  const [serviceCar, setServiceCar] = useState([]);
 
   const loadServices = async() =>{
     const res = await personalCar.get('/services');
     setServices(res.data)
+  }
+
+  const personalCars = (e) =>{
+    e.preventDefault();
+
+    const car = {
+      name,
+      brand,
+      description,
+      model,
+      budget,
+      image,
+      services: serviceCar
+    }
+  }
+
+  const handleServices = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.value;
+    const filterService = services.filter((s)=> s._id === value);
+
+    if(checked){
+      setServiceCar((serviceCar) => [...serviceCar, filterService[0]]);
+    }else{
+      setServiceCar((serviceCar) => serviceCar.filter((s)=> s._id !== value));
+    }
   }
 
   useEffect(() => {
@@ -16,34 +49,35 @@ const CreateCar = () => {
   },[])
 
 
+
   return (
     <div className='form-page'>
       <h2>Crie sua próxima proxima personalização de carro.</h2>
       <p>Defina o seu orçamento e escolha os serviços</p>
-      <form action="">
+      <form onSubmit={(e)=> personalCars(e)}>
         <label>
           <span>Nome do Carro:</span>
-          <input type="text" placeholder='Escreva o nome do carro...' required />
+          <input type="text" placeholder='Escreva o nome do carro...' required onChange={(e) => setName(e.target.value)} value={name}/>
         </label>
         <label>
           <span>Marca do Carro:</span>
-          <input type="text" placeholder='Escreva o nome da marca do carro...' required />
+          <input type="text" placeholder='Escreva o nome da marca do carro...' required onChange={(e)=> setBrand(e.target.value)} value={brand}/>
         </label>
         <label>
           <span>Descreva mais sobre o carro:</span>
-          <textarea placeholder='Escreva mais sobre o carro...' required />
+          <textarea placeholder='Escreva mais sobre o carro...' required onChange={(e)=> setDescription(e.target.value)} value={description}/>
         </label>
         <label>
           <span>Modelo do carro:</span>
-          <input type="text" placeholder='Escreva o modelo do carro...' required />
+          <input type="text" placeholder='Escreva o modelo do carro...' required onChange={(e)=> setModel(e.target.value)} value={model}/>
         </label>
         <label>
           <span>Orçamento:</span>
-          <input type="number" placeholder='Escreva o orçamento a ser inestido no carro...' required />
+          <input type="number" placeholder='Escreva o orçamento a ser inestido no carro...' required onChange={(e)=> setBudget(e.target.value)} value={budget}/>
         </label>
         <label>
           <span>Coloque uma imagem do carro:</span>
-          <input type="text" placeholder='Insira uma URL de uma imagem da internet...' required />
+          <input type="text" placeholder='Insira uma URL de uma imagem da internet...' required onChange={(e)=> setImage(e.target.value)} value={image}/>
         </label>
         <h2 id='title-service'>Escolha os serviços</h2>
         <div className='services-container'>
@@ -54,7 +88,7 @@ const CreateCar = () => {
               <p id='service-name'>{service.name}</p>
               <p id='service-price'>R$ {service.price}</p>
               <div className='checkbox-container'>
-                <input type="checkbox" value={service.id}/>
+                <input type="checkbox" value={service.id} onChange={(e) => handleServices(e)}/>
                 <p>Marque para selecionar</p>
               </div>
             </div>
