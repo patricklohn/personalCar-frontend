@@ -8,6 +8,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import CreateCar from './routes/CreateCar.jsx'
 import ErrorPage from './routes/ErrorPage.jsx'
 import Home from './routes/Home.jsx'
+import Cars from './routes/Cars.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/car/new",
         element: <CreateCar/>
+      },
+      {
+        path: "/cars/:id",
+        element: <Cars/>
       }
     ]
   }

@@ -7,6 +7,7 @@ import useToast from '../hook/useToast'
 const Home = () => {
   const [car, setCar] = useState(null);
   const isFetching = useRef(false);
+  const toast = useToast();
 
   const loadCar = async() =>{
     if (isFetching.current) return;
@@ -17,7 +18,7 @@ const Home = () => {
       setCar(res.data)
     } catch (error) {
     console.log(error)
-    useToast("Erro ao comunicar com a API favor aguardar 15 segundos para um nova comunicação.", "error")
+    toast("Erro ao comunicar com a API favor aguardar 15 segundos para um nova comunicação.", "error")
     setTimeout(() => {
       isFetching.current = false;
       loadCar();
@@ -40,7 +41,7 @@ const Home = () => {
           <div className="car" key={cars._id}>
             <img src={cars.image} alt={cars.name} />
             <h3>{cars.name}</h3>
-            <Link className='btn-secondary' to={`/car/${cars._id}`}>Detalhes</Link> 
+            <Link className='btn-secondary' to={`/cars/${cars._id}`}>Detalhes</Link> 
           </div>
         ))}
       </div>
