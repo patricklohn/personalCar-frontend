@@ -24,6 +24,7 @@
 
 .cars-container .car img{
     width: 100%;
+    height: 250px;
 }
 
 .cars-container .btn-secondary{
@@ -31,3 +32,17 @@
     text-align: center;
 }
 
+.btn-secondary{
+    margin: 0 auto;
+    border:2px solid var(--destaque-dark-classic);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: var(--destaque-dark-classic);
+    transition: 0.5s;
+}
+
+.btn-secondary:hover{
+    background-color: var(--destaque-dark);
+    border: 2px solid var(--destaque-dark);
+}

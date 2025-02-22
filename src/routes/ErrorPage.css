@@ -1,0 +1,36 @@
+.error-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.error{
+    display: flex;
+    flex-direction: column;
+    padding: 10rem;
+    background-color: var(--destaque-dark-classic);
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.error h1,.error p,.error a{
+    background-color: var(--destaque-dark-classic);
+    text-decoration: none;
+}
+
+.error h1{
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.error p{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.error .btn-secondary{
+    border:2px solid var(--font-dark)
+}
+
