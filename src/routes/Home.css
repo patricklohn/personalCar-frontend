@@ -25,6 +25,7 @@
 .cars-container .car img{
     width: 100%;
     height: 250px;
+    border-radius: 15px;
 }
 
 .cars-container .btn-secondary{

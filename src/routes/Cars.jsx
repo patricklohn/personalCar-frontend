@@ -8,7 +8,7 @@ const Cars = () => {
     const [cars, setCars] = useState(null);
     const isFetching = useRef(false);
     const {id} = useParams(); 
-    const toast = useToast();
+    const navigate = useNavigate();
 
     const loadCar = async() =>{
         if(isFetching.current) return;
@@ -19,11 +19,26 @@ const Cars = () => {
             setCars(res.data);
         } catch (error) {
             console.log(error)
-            toast("Erro ao retornar os dados do carro ahuarde 15 segundos para uma nova tentativa.", "error")
+            useToast("Erro ao retornar os dados do carro ahuarde 15 segundos para uma nova tentativa.", "error")
             setTimeout(() =>{
                 isFetching.current = false;
                 loadCar(); 
             },15000)
+        }
+    }
+
+    // Delte this car
+
+    const handleDelete = async() => {
+        try {
+            const res = await personalCar.delete(`carGet/${id}`);
+            if(res.status === 200){
+                navigate('/')
+                useToast(res.data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            useToast(error.data.menssage, "error")
         }
     }
 
@@ -37,7 +52,7 @@ const Cars = () => {
         <h1>{cars.name}</h1>
         <div className="actions-container">
             <Link className='btn-secondary'>Editar</Link>
-            <button className='btn-secondary'>Excluir</button>
+            <button className='btn-secondary' onClick={() => handleDelete()}>Excluir</button>
         </div>
         <p>Orçamento: R${cars.budget}</p>
         <h3>Serviços contratados</h3>
