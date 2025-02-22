@@ -1,17 +1,31 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import personalCar from '../axios/config'
 import "./Home.css" 
 import { Link } from 'react-router-dom'
+import useToast from '../hook/useToast'
 
 const Home = () => {
   const [car, setCar] = useState(null);
+  const isFetching = useRef(false);
 
-  useEffect(() => {
-    const loadCar = async() =>{
+  const loadCar = async() =>{
+    if (isFetching.current) return;
+    isFetching.current = true;
+
+    try {
       const res = await personalCar.get('/carGet');
       setCar(res.data)
-    }
-  
+    } catch (error) {
+    console.log(error)
+    useToast("Erro ao comunicar com a API favor aguardar 15 segundos para um nova comunicação.", "error")
+    setTimeout(() => {
+      isFetching.current = false;
+      loadCar();
+    }, 15000);
+  }
+}
+
+  useEffect(() => {
     loadCar();
   },[])
 
