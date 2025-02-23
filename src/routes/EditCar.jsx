@@ -2,19 +2,15 @@ import {useEffect,useState} from 'react'
 import personalCar from '../axios/config'
 import {useNavigate, useParams} from 'react-router-dom'
 import useToast from '../hook/useToast'
+import './EditCar.css'
 
 const EditCar = () => {
-  const [carData, setCarData] = useState(null)
   const [services, setServices] = useState([])
-  const [name, setName] = useState("");
-  const [brand, setBrand] = useState("");
-  const [description, setDescription] = useState("");
-  const [model, setModel] = useState("");
-  const [budget, setBudget] = useState(0);
-  const [image, setImage] = useState("");
   const [serviceCar, setServiceCar] = useState([]);
-  const {id} = useParams();
+  const [carData, setCarData] = useState(null);
   const navigate = useNavigate();
+  const {id} = useParams();
+
 
   const getData = async() =>{
     try {
@@ -26,11 +22,11 @@ const EditCar = () => {
     }
   }
 
-  console.log(carData && serviceCar)
-
   const loadServices = async() =>{
     const res = await personalCar.get('/services');
     setServices(res.data)
+    
+    getData();
   }
 
   const handleServices = (e) => {
@@ -45,40 +41,46 @@ const EditCar = () => {
     }
   }
 
+  const updateCar = async(e) =>{
+    e.preventDefault();
+    console.log(carData)
+  }
+
   useEffect(()=>{
-    getData();
     loadServices();
   },[])
+
+  if(!carData) return <div id="loading-screen"><div className="loading-spinner"></div></div>
 
   return (
     <div>
       <div className='form-page'>
-      <h2>Crie sua próxima proxima personalização de carro.</h2>
-      <p>Defina o seu orçamento e escolha os serviços</p>
-      <form onSubmit={(e)=> personalCars(e)}>
+      <h2>Editando: {carData.name}</h2>
+      <p>Ajuste as opçoes de personalização do carro.</p>
+      <form onClick={(e) => updateCar(e)}>
         <label>
           <span>Nome do Carro:</span>
-          <input type="text" placeholder='Escreva o nome do carro...' required onChange={(e)=> setName(e.target.value)} value={name}/>
+          <input type="text" placeholder='Escreva o nome do carro...' required onChange={(e)=> setName(e.target.value)} value={carData.name}/>
         </label>
         <label>
           <span>Marca do Carro:</span>
-          <input type="text" placeholder='Escreva o nome da marca do carro...' required onChange={(e)=> setBrand(e.target.value)} value={brand}/>
+          <input type="text" placeholder='Escreva o nome da marca do carro...' required onChange={(e)=> setBrand(e.target.value)} value={carData.brand}/>
         </label>
         <label>
           <span>Descreva mais sobre o carro:</span>
-          <textarea placeholder='Escreva mais sobre o carro...' required onChange={(e)=> setDescription(e.target.value)} value={description}/>
+          <textarea placeholder='Escreva mais sobre o carro...' required onChange={(e)=> setDescription(e.target.value)} value={carData.description}/>
         </label>
         <label>
           <span>Modelo do carro:</span>
-          <input type="text" placeholder='Escreva o modelo do carro...' required onChange={(e)=> setModel(e.target.value)} value={model}/>
+          <input type="text" placeholder='Escreva o modelo do carro...' required onChange={(e)=> setModel(e.target.value)} value={carData.model}/>
         </label>
         <label>
           <span>Orçamento:</span>
-          <input type="number" placeholder='Escreva o orçamento a ser inestido no carro...' required onChange={(e)=> setBudget(e.target.value)} value={budget}/>
+          <input type="number" placeholder='Escreva o orçamento a ser inestido no carro...' required onChange={(e)=> setBudget(e.target.value)} value={carData.budget}/>
         </label>
         <label>
           <span>Coloque uma imagem do carro:</span>
-          <input type="text" placeholder='Insira uma URL de uma imagem da internet...' required onChange={(e)=> setImage(e.target.value)} value={image}/>
+          <input type="text" placeholder='Insira uma URL de uma imagem da internet...' required onChange={(e)=> setImage(e.target.value)} value={carData.image}/>
         </label>
         <h2 id='title-service'>Escolha os serviços</h2>
         <div className='services-container'>
