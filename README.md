@@ -3,15 +3,6 @@ Projeto front end
 
 <!-- ![Logo do Projeto](https://via.placeholder.com/150) -->
 
-## Índice
-
-- [Descrição do Projeto](#descrição-do-projeto)
-- [Status do Projeto](#status-do-projeto)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Pré-requisitos](#pré-requisitos)
-- [Como Rodar o Projeto](#como-rodar-o-projeto)
-- [Contribuidores](#contribuidores)
-
 ## Descrição do Projeto
 
 Objetivo seria um controle de personalização de carros. Respeitando um orçamento. 
@@ -21,8 +12,8 @@ Projeto integrado com outro em BackEnd.
 
 ## Status do Projeto
 
-![Badge em Desenvolvimento](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
-<!-- ![Badge em Desenvolvimento](https://img.shields.io/badge/Status-Finalizado-green) -->
+<!-- ![Badge em Desenvolvimento](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow) -->
+![Badge em Desenvolvimento](https://img.shields.io/badge/Status-Finalizado-green)
 
 ## Tecnologias Utilizadas
 
