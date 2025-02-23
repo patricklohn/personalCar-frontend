@@ -51,7 +51,7 @@ const Cars = () => {
     <div className="container-car">
         <h1>{cars.name}</h1>
         <div className="actions-container">
-            <Link className='btn-secondary'>Editar</Link>
+            <Link className='btn-secondary' to={`/car/edit/${cars._id}`}>Editar</Link>
             <button className='btn-secondary' onClick={() => handleDelete()}>Excluir</button>
         </div>
         <p>Orçamento: R${cars.budget}</p>

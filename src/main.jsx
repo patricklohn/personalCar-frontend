@@ -9,6 +9,7 @@ import CreateCar from './routes/CreateCar.jsx'
 import ErrorPage from './routes/ErrorPage.jsx'
 import Home from './routes/Home.jsx'
 import Cars from './routes/Cars.jsx'
+import EditCar from './routes/EditCar.jsx'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/cars/:id",
         element: <Cars/>
+      },
+      {
+        path: "/car/edit/:id",
+        element: <EditCar/>
       }
     ]
   }
